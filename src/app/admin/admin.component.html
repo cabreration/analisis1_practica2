@@ -1,0 +1,86 @@
+<div class="divbody">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <a class="navbar-brand">Store</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="modal" data-target="#productModal">Crear Producto</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link">Cerrar Sesion</a>
+            </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Aqui empieza el album -->
+
+    <main>
+        <section class="jumbotron text-center my-5">
+          <div class="container">
+            <h1 class="jumbotron-heading">Productos Disponibles</h1>
+          </div>
+        </section>
+
+        <div class="album py-5 bg-light">
+          <div class="container">
+            <div class="row">
+              
+              <div *ngFor="let product of products" class="col-md-4">
+                <div class="card mb-4 box-shadow">
+                  <img class="card-img-top" data-src="{{product.photo}}" alt="Card image cap">
+                  <div class="card-body">
+                    <p class="card-text">{{product.name}}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-danger">Eliminar</button>
+                        <button type="button" class="btn btn-sm btn-outline-info">Modificar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </main>
+
+    <!-- Aqui termina el album -->
+
+    <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="policeTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="policeTitle">Producto Nuevo</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" #close>
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              
+              <div class="form-group row">
+                <label for="policePhoto" class="custom-file-label">Cargar</label>
+                <input #productPhoto type="file" multiple accept="image/*" class="custom-file-input" id="policePhoto">
+                <img *ngIf="imgSrc" [src]="imgSrc" alt="Vista Previa" class="img-thumbnail m-3">
+              </div>
+              <div class="form-group row mx-1">
+                <label for="nameInput">Nombre</label>
+                <input id="nameInput" class="form-control mb-4" [(ngModel)]="nombre" type="text">
+              </div>
+              <div class="form-group row mx-1">
+                <label for="costInput">Precio</label>
+                <input id="costInput" class="form-control mb-4" [(ngModel)]="precio" type="number">
+              </div>  
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary">Cancelar</button>
+              <button type="button" class="btn btn-primary">Crear</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+</div>
