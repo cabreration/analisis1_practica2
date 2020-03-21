@@ -36,7 +36,7 @@
                     <p class="card-text">{{product.name}}</p>
                     <div class="d-flex justify-content-between align-items-center">
                       <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-outline-danger">Eliminar</button>
+                        <button type="button" class="btn btn-sm btn-outline-danger" (click)="deleteProduct(product.name)">Eliminar</button>
                         <button type="button" class="btn btn-sm btn-outline-info">Modificar</button>
                       </div>
                     </div>
@@ -63,21 +63,21 @@
               
               <div class="form-group row">
                 <label for="policePhoto" class="custom-file-label">Cargar</label>
-                <input #productPhoto type="file" multiple accept="image/*" class="custom-file-input" id="policePhoto">
+                <input #productPhoto type="file" multiple accept="image/*" class="custom-file-input" id="policePhoto" (change)="onFileUpload($event)">
                 <img *ngIf="imgSrc" [src]="imgSrc" alt="Vista Previa" class="img-thumbnail m-3">
               </div>
               <div class="form-group row mx-1">
                 <label for="nameInput">Nombre</label>
-                <input id="nameInput" class="form-control mb-4" [(ngModel)]="nombre" type="text">
+                <input id="nameInput" class="form-control mb-4" [(ngModel)]="name" type="text">
               </div>
               <div class="form-group row mx-1">
                 <label for="costInput">Precio</label>
-                <input id="costInput" class="form-control mb-4" [(ngModel)]="precio" type="number">
+                <input id="costInput" class="form-control mb-4" [(ngModel)]="price" type="number">
               </div>  
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary">Cancelar</button>
-              <button type="button" class="btn btn-primary">Crear</button>
+              <button type="button" class="btn btn-primary" (click)="createProduct()" data-dismiss="modal" #close>Crear</button>
             </div>
           </div>
         </div>

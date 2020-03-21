@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductsService } from '../services/products.service';
 
 @Component({
   selector: 'app-landing',
@@ -12,7 +13,10 @@ export class LandingComponent implements OnInit {
   telefono = '';
   cantidad = 1;
 
-  constructor() { }
+  constructor(private productsservice:ProductsService) {
+    if(this.productsservice.isNotEmpty()) this.products=this.productsservice.getProducts();
+    else this.products=[];
+  }
 
   ngOnInit() {
   }
