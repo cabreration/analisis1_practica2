@@ -8,20 +8,23 @@ import { LandingComponent } from './landing/landing.component';
 import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin/admin.component';
 import { ProductsService } from './services/products.service';
+import { SalesCartComponent } from './sales-cart/sales-cart.component';
+import { CartProductsService } from './services/cart-products.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     LandingComponent,
     LoginComponent,
-    AdminComponent
+    AdminComponent,
+    SalesCartComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule
   ],
-  providers: [ProductsService],
+  providers: [ProductsService,CartProductsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

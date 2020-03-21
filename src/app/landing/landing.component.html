@@ -9,6 +9,9 @@
             <li class="nav-item">
               <a class="nav-link" routerLink="/login">Iniciar Sesión</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="modal" data-target="#cartModal">Ver Carrito</a>
+            </li>
         </ul>
       </div>
     </nav>
@@ -45,7 +48,7 @@
     </main>
 
     <!-- Aqui termina el album -->
-
+    <!-- Aqui empieza el modal de orden -->
     <div class="modal fade" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="policeTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -76,5 +79,36 @@
         </div>
       </div>
     </div>
+<!-- Aqui termina el modal del orden -->
+<!-- Aqui empieza el modal del carrito -->
+    <div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="policeTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="policeTitle">Shopping Cart</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" #close>
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              
+              <div class="form-group row">                
+                <img *ngIf="imgSrc" [src]="imgSrc" alt="Vista Previa" class="img-thumbnail m-3">
+              </div>
+              <div class="form-group row mx-1">
+                <label >Nombre</label>                
+              </div>
+              <div class="form-group row mx-1">
+                <label>Precio</label>
+              </div>  
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary">Cancelar</button>
+              <button type="button" class="btn btn-primary"  data-dismiss="modal" #close>Checkout</button>
+            </div>
+          </div>
+        </div>
+      </div>
+<!-- Aqui termina el modal del carrito -->
 
 </div>
