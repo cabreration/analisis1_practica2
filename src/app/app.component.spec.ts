@@ -1,16 +1,32 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { SalesCartComponent } from './sales-cart/sales-cart.component';
+import { AdminComponent } from './admin/admin.component';
+import { LoginComponent } from './login/login.component';
+import { LandingComponent } from './landing/landing.component';
+import { CartProductsService } from './services/cart-products.service';
+import { ProductsService } from './services/products.service';
+import { BrowserModule } from '@angular/platform-browser';
+import { AppRoutingModule } from './app-routing.module';
+import { FormsModule } from '@angular/forms';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,BrowserModule,
+        AppRoutingModule,
+        FormsModule
       ],
       declarations: [
-        AppComponent
+        AppComponent,
+        LandingComponent,
+        LoginComponent,
+        AdminComponent,
+        SalesCartComponent
       ],
+      providers:[CartProductsService,ProductsService],
     }).compileComponents();
   }));
 
@@ -20,16 +36,4 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'Practica2'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('Practica2');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('Practica2 app is running!');
-  });
 });

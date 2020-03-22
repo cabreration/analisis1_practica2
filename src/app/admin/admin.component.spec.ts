@@ -8,21 +8,26 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from '../app.component';
 import { LandingComponent } from '../landing/landing.component';
 import { LoginComponent } from '../login/login.component';
+import { SalesCartComponent } from '../sales-cart/sales-cart.component';
+import { CartProductsService } from '../services/cart-products.service';
 
 describe('AdminComponent', () => {
   let component: AdminComponent;
   let fixture: ComponentFixture<AdminComponent>;
   let price:any;
+  let products;
+  let productsquantity;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ AppComponent,
         LandingComponent,
         LoginComponent,
-        AdminComponent ],imports:[BrowserModule,
+        AdminComponent,
+      SalesCartComponent ],imports:[BrowserModule,
         AppRoutingModule,
         FormsModule],
-      providers: [ProductsService]
+      providers: [ProductsService,CartProductsService]
     })
     .compileComponents();
   }));
@@ -32,15 +37,35 @@ describe('AdminComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
     price = component['price'];
+    products=component['products'];
+    productsquantity=component['products'].length;
+  });
+
+  afterEach(() => {
+    
   });
 
   it('price should be positive numeric', () => {
     expect(price).toBeGreaterThanOrEqual(0);
   });
+
+  it('create product should increase products', () => {
+    component.createProduct();
+    expect(products.length)
+        .toEqual(productsquantity+1);
+  });
+
+  it('delete product should decrease products', () => {
+    component.deleteProduct('');
+    expect(products.length)
+        .toEqual(productsquantity-1);
+  });
+
+  it('product should not be repeated', () => {
+    component.createProduct();
+    expect(products.filter(function(elem, index, self) {
+      return index === self.indexOf(elem);
+    })).toEqual(products);
+  });
 });
 
-
-// Cuando se elimine un producto se debe comprobar que la lista de productos efectivamente tiene un producto menos.
-// Al agregar un producto se debe verificar que el valor del campo precio del mismo sea un valor numérico.
-// Cuando se agregue un producto se debe comprobar que la lista de productos tiene un producto más de los que tenía anteriormente.
-// Al agregar un producto se debe verificar que la lista no contenga el mismo producto más de una vez.
