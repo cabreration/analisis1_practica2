@@ -8,7 +8,6 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from '../app.component';
 import { LandingComponent } from '../landing/landing.component';
 import { LoginComponent } from '../login/login.component';
-import { SalesCartComponent } from '../sales-cart/sales-cart.component';
 import { CartProductsService } from '../services/cart-products.service';
 
 describe('AdminComponent', () => {
@@ -23,8 +22,8 @@ describe('AdminComponent', () => {
       declarations: [ AppComponent,
         LandingComponent,
         LoginComponent,
-        AdminComponent,
-      SalesCartComponent ],imports:[BrowserModule,
+        AdminComponent ],
+      imports:[BrowserModule,
         AppRoutingModule,
         FormsModule],
       providers: [ProductsService,CartProductsService]

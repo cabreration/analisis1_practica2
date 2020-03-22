@@ -8,7 +8,6 @@ import { LandingComponent } from './landing/landing.component';
 import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin/admin.component';
 import { ProductsService } from './services/products.service';
-import { SalesCartComponent } from './sales-cart/sales-cart.component';
 import { CartProductsService } from './services/cart-products.service';
 
 @NgModule({
@@ -16,8 +15,7 @@ import { CartProductsService } from './services/cart-products.service';
     AppComponent,
     LandingComponent,
     LoginComponent,
-    AdminComponent,
-    SalesCartComponent
+    AdminComponent
   ],
   imports: [
     BrowserModule,
