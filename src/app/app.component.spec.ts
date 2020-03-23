@@ -1,7 +1,7 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import { SalesCartComponent } from './sales-cart/sales-cart.component';
+//import { SalesCartComponent } from './sales-cart/sales-cart.component';
 import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
 import { LandingComponent } from './landing/landing.component';
@@ -23,8 +23,8 @@ describe('AppComponent', () => {
         AppComponent,
         LandingComponent,
         LoginComponent,
-        AdminComponent,
-        SalesCartComponent
+        AdminComponent//,
+        //SalesCartComponent
       ],
       providers:[CartProductsService,ProductsService],
     }).compileComponents();

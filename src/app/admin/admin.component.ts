@@ -17,7 +17,7 @@ export class AdminComponent implements OnInit {
 
   modName = '';
   modPrice = 0;
-  modIndex = -1;
+  modIndex = 0;
 
   constructor(private productsservice:ProductsService) {
     if(this.productsservice.isNotEmpty()) this.products=this.productsservice.getProducts();
