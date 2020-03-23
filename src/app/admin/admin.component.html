@@ -29,15 +29,16 @@
           <div class="container">
             <div class="row">
               
-              <div *ngFor="let product of products" class="col-md-4">
+              <div *ngFor="let product of products; let i = index" class="col-md-4">
                 <div class="card mb-4 box-shadow">
                   <img class="card-img-top" data-src="{{product.photo}}" alt="Card image cap">
                   <div class="card-body">
                     <p class="card-text">{{product.name}}</p>
+                    <p class="card-text">Precio: {{product.price}}</p>
                     <div class="d-flex justify-content-between align-items-center">
                       <div class="btn-group">
                         <button type="button" class="btn btn-sm btn-outline-danger" (click)="deleteProduct(product.name)">Eliminar</button>
-                        <button type="button" class="btn btn-sm btn-outline-info">Modificar</button>
+                        <button type="button" class="btn btn-sm btn-outline-info" data-toggle="modal" data-target="#modifyModal" (click)="chooseProduct(i)">Modificar</button>
                       </div>
                     </div>
                   </div>
@@ -78,6 +79,33 @@
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary">Cancelar</button>
               <button type="button" class="btn btn-primary" (click)="createProduct()" data-dismiss="modal" #close>Crear</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="modifyModal" tabindex="-1" role="dialog" aria-labelledby="policeTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="policeTitle">Modificar Información del Producto</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" #close>
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group row mx-1">
+                <label for="nameInput">Nombre</label>
+                <input id="nameInput" class="form-control mb-4" [(ngModel)]="modName" type="text">
+              </div>
+              <div class="form-group row mx-1">
+                <label for="costInput">Precio</label>
+                <input id="costInput" class="form-control mb-4" [(ngModel)]="modPrice" type="number">
+              </div>  
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+              <button type="button" class="btn btn-primary" (click)="modifyProduct()" >Modificar</button>
             </div>
           </div>
         </div>

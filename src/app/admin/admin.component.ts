@@ -15,6 +15,10 @@ export class AdminComponent implements OnInit {
   price = 0;
   photo:any = '';
 
+  modName = '';
+  modPrice = 0;
+  modIndex = -1;
+
   constructor(private productsservice:ProductsService) {
     if(this.productsservice.isNotEmpty()) this.products=this.productsservice.getProducts();
     else this.products=[];
@@ -53,4 +57,15 @@ export class AdminComponent implements OnInit {
     reader.readAsDataURL(this.productPhoto);
   }
 
+  chooseProduct(i: number) {
+    this.modIndex = i;
+    this.modName = this.products[i].name;
+    this.modPrice = this.products[i].price;
+  }
+
+  modifyProduct(): void {
+    this.products[this.modIndex].name = this.modName;
+    this.products[this.modIndex].price = this.modPrice;
+    this.productsservice.setProducts(this.products); 
+  }
 }
