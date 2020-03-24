@@ -25,7 +25,12 @@ export class AdminComponent implements OnInit {
     else this.products=[];
   }
 
-  ngOnInit() {
+  ngOnInit() 
+  {
+    if( !sessionStorage.getItem('usuario') )
+    {
+      this.router.navigate(['']);
+    }
   }
 
   createProduct(){
@@ -69,10 +74,11 @@ export class AdminComponent implements OnInit {
     this.products[this.modIndex].price = this.modPrice;
     this.productsservice.setProducts(this.products); 
   }
-  logout(){
-    console.log('saliendo');    
-    sessionStorage.clear();
-    this.router.navigate(['']);
 
+  logout()
+  {
+    console.log('saliendo');    
+    sessionStorage.removeItem('usuario');
+    this.router.navigate(['']);
   }
 }

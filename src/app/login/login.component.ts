@@ -18,17 +18,21 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
   
-  guardar(){
+  guardar()
+  {
     let loginRequest = {
       user: this.user,
       password: this.password
-    };    
-    if(loginRequest.user===this.user_admin&&loginRequest.password===this.password_admin){
+    };
+
+    if(loginRequest.user === this.user_admin && loginRequest.password === this.password_admin)
+    {
       sessionStorage.setItem('usuario', JSON.stringify(loginRequest));
       this.router.navigate(['admin']);
     }
-    else{
-      alert('credenciales invalidas');      
+    else
+    {
+      alert('Credenciales Inválidas');      
     }
   }
 
