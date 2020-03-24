@@ -34,8 +34,13 @@ describe('LoginComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  
+  it('la variable de sesion debe estar vacia antes de hacer login', () => {
+    expect(sessionStorage.getItem(component.user)).toEqual(null);
   });
+
+  it('la variable de sesion es almacenada luego de hacer login', () => {
+    expect(sessionStorage.getItem(component.user)).toBeDefined();
+  }); 
+
 });

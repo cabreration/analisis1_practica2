@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../services/products.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin',
@@ -19,7 +20,7 @@ export class AdminComponent implements OnInit {
   modPrice = 0;
   modIndex = 0;
 
-  constructor(private productsservice:ProductsService) {
+  constructor(private productsservice:ProductsService,private router: Router) {
     if(this.productsservice.isNotEmpty()) this.products=this.productsservice.getProducts();
     else this.products=[];
   }
@@ -67,5 +68,11 @@ export class AdminComponent implements OnInit {
     this.products[this.modIndex].name = this.modName;
     this.products[this.modIndex].price = this.modPrice;
     this.productsservice.setProducts(this.products); 
+  }
+  logout(){
+    console.log('saliendo');    
+    sessionStorage.clear();
+    this.router.navigate(['']);
+
   }
 }
