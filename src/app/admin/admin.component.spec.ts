@@ -49,7 +49,7 @@ describe('AdminComponent', () => {
   });
 
   afterEach(() => {
-    
+    sessionStorage.removeItem('usuario');
   });
 
   it('price should be positive numeric', () => {
@@ -87,6 +87,27 @@ describe('AdminComponent', () => {
   it('when modifying a product price and name should not be empty', () => {
     expect(modPrice).not.toBe('');
     expect(modName).not.toBeNull('');
+  });
+
+  it('el usuario debe estar autenticado', () => {
+    let credenciales = {
+      user: 'ADMIN',
+      password: '123'
+    };
+
+    sessionStorage.setItem('usuario', JSON.stringify(credenciales)); 
+    expect(component.isLogged()).toBeTruthy();
+  });
+
+  it('la variable de sesion de debe eliminar al cerrar sesion', () => {
+    let credenciales = {
+      user: 'ADMIN',
+      password: '123'
+    };
+
+    sessionStorage.setItem('usuario', JSON.stringify(credenciales)); 
+    component.logout()
+    expect(sessionStorage.getItem('usuario')).toEqual(null);
   });
 });
 

@@ -32,6 +32,7 @@ describe('LoginComponent', () => {
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    sessionStorage.removeItem('usuario'); 
   });
   
   it('la variable de sesion debe estar vacia antes de hacer login', () => {
@@ -40,6 +41,16 @@ describe('LoginComponent', () => {
 
   it('la variable de sesion es almacenada luego de hacer login', () => {
     expect(sessionStorage.getItem(component.user)).toBeDefined();
+  }); 
+
+  it('inicio de sesion case sensitive', () => {
+    let credenciales = {
+      user: 'ADMIN',
+      password: '123'
+    };
+
+    sessionStorage.setItem('usuario', JSON.stringify(credenciales)); 
+    expect(JSON.parse(sessionStorage.getItem('usuario')).user == component.user_admin).toBe(true)
   }); 
 
 });

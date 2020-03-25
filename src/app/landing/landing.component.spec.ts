@@ -51,4 +51,8 @@ describe('LandingComponent', () => {
     })).toEqual(cartProducts);
   });
 
+  it('productos no deben de estar repetidos', () => {
+    expect((new Set(component.products)).size !== component.products.length).toBe(false);
+  });
+
 });

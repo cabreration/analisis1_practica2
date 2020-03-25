@@ -27,10 +27,15 @@ export class AdminComponent implements OnInit {
 
   ngOnInit() 
   {
-    if( !sessionStorage.getItem('usuario') )
+    if( !this.isLogged() )
     {
       this.router.navigate(['']);
     }
+  }
+
+  isLogged()
+  {
+    return sessionStorage.getItem('usuario') != null
   }
 
   createProduct(){
