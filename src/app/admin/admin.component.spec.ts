@@ -17,6 +17,7 @@ describe('AdminComponent', () => {
   let products;
   let productsquantity;
 
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ AppComponent,
@@ -36,7 +37,9 @@ describe('AdminComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
     price = component['price'];
+
     products=component['products'];
+
     productsquantity=component['products'].length;
   });
 
@@ -66,5 +69,7 @@ describe('AdminComponent', () => {
       return index === self.indexOf(elem);
     })).toEqual(products);
   });
+
+
 });
 

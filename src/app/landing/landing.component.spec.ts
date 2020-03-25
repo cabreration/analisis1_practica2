@@ -15,11 +15,10 @@ describe('LandingComponent', () => {
   let fixture: ComponentFixture<LandingComponent>;
   let cartProducts;
   let priceUnit;
+  let price:any;
   let total;
   beforeEach(async(() => {
-    cartProducts=component['cartProducts'];
-    priceUnit = component['price'];
-    total= component['total'];
+    
     TestBed.configureTestingModule({
       declarations: [ AppComponent,
         LandingComponent,
@@ -37,6 +36,9 @@ describe('LandingComponent', () => {
     fixture = TestBed.createComponent(LandingComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    cartProducts=component['cartProducts'];
+    price = component['precioUnitaro'];
+    total= component['total'];
   });
 
   it('should create', () => {
@@ -48,10 +50,5 @@ describe('LandingComponent', () => {
       return index === self.indexOf(elem);
     })).toEqual(cartProducts);
   });
-  it('price per unit should be positive numeric', () => {
-    expect(priceUnit).toBeGreaterThanOrEqual(0);
-  });
-  it('total of order should be positive numeric', () => {
-    expect(priceUnit).toBeGreaterThanOrEqual(0);
-  });
+
 });
