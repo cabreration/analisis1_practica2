@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../services/products.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin',
@@ -15,12 +16,21 @@ export class AdminComponent implements OnInit {
   price = 0;
   photo:any = '';
 
-  constructor(private productsservice:ProductsService) {
+  modName = '';
+  modPrice = 0;
+  modIndex = 0;
+
+  constructor(private productsservice:ProductsService,private router: Router) {
     if(this.productsservice.isNotEmpty()) this.products=this.productsservice.getProducts();
     else this.products=[];
   }
 
-  ngOnInit() {
+  ngOnInit() 
+  {
+    if( !sessionStorage.getItem('usuario') )
+    {
+      this.router.navigate(['']);
+    }
   }
 
   createProduct(){
@@ -53,4 +63,22 @@ export class AdminComponent implements OnInit {
     reader.readAsDataURL(this.productPhoto);
   }
 
+  chooseProduct(i: number) {
+    this.modIndex = i;
+    this.modName = this.products[i].name;
+    this.modPrice = this.products[i].price;
+  }
+
+  modifyProduct(): void {
+    this.products[this.modIndex].name = this.modName;
+    this.products[this.modIndex].price = this.modPrice;
+    this.productsservice.setProducts(this.products); 
+  }
+
+  logout()
+  {
+    console.log('saliendo');    
+    sessionStorage.removeItem('usuario');
+    this.router.navigate(['']);
+  }
 }

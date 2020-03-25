@@ -5,6 +5,6 @@
       <input [(ngModel)]="user" name="credInput" type="text" id="inputEmail" class="form-control my-2" placeholder="Credenciales">
       <label for="inputPassword" class="sr-only">Contraseña</label>
       <input [(ngModel)]="password" name="credPassword" type="password" id="inputPassword" class="form-control mb-4" placeholder="Clave">
-      <button name="credButton" class="btn btn-lg btn-primary btn-block" type="button">Ingresar</button>
+      <button (click)="guardar()" name="credButton" class="btn btn-lg btn-primary btn-block" type="button">Ingresar</button>
     </form>
 </div>

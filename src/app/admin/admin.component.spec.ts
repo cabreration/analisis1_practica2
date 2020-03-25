@@ -16,6 +16,9 @@ describe('AdminComponent', () => {
   let price:any;
   let products;
   let productsquantity;
+  let modPrice;
+  let modName;
+  let modIndex;
 
 
   beforeEach(async(() => {
@@ -39,8 +42,10 @@ describe('AdminComponent', () => {
     price = component['price'];
 
     products=component['products'];
-
+    modPrice = component['modPrice'];
+    modName = component['modName'];
     productsquantity=component['products'].length;
+    modIndex = component['modIndex'];
   });
 
   afterEach(() => {
@@ -70,6 +75,18 @@ describe('AdminComponent', () => {
     })).toEqual(products);
   });
 
+  it('when modifying a product price should be positive numeric', () => {
+    expect(modPrice).toBeGreaterThanOrEqual(0);
+  });
 
+  it('when selecting a producto to modify it index should be between 0 and list length', () => {
+    expect(modIndex).toBeGreaterThanOrEqual(0);
+    expect(modIndex).toBeLessThanOrEqual(products.length);
+  });
+
+  it('when modifying a product price and name should not be empty', () => {
+    expect(modPrice).not.toBe('');
+    expect(modName).not.toBeNull('');
+  });
 });
 
