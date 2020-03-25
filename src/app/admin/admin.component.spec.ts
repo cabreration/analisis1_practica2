@@ -65,7 +65,7 @@ describe('AdminComponent', () => {
   it('delete product should decrease products', () => {
     component.deleteProduct('');
     expect(products.length)
-        .toEqual(productsquantity-1);
+        .toEqual(productsquantity-1 || 0);
   });
 
   it('product should not be repeated', () => {
